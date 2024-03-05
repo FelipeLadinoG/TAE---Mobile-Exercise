@@ -11,6 +11,7 @@ public class LogInScreen extends BaseScreen {
     private static final String PASSWORD = "input-password";
     private static final String LOGIN = "button-LOGIN";
     private static final String SIGN_UP = "UiSelector().className(android.widget.TextView).text(\"Sign up\")";
+    private static final String SUCCESS_MSG = "UiSelector().className(android.widget.TextView).text(\"Success\")";
 
     @AndroidFindBy(accessibility = EMAIL)
     WebElement emailField;
@@ -22,7 +23,10 @@ public class LogInScreen extends BaseScreen {
     WebElement loginBtn;
 
     @AndroidFindBy(uiAutomator = SIGN_UP)
-    private WebElement signUp;
+    WebElement signUp;
+
+    @AndroidFindBy(uiAutomator = SUCCESS_MSG)
+    WebElement successMsg;
 
 
     public LogInScreen(AndroidDriver driver) {
@@ -41,5 +45,13 @@ public class LogInScreen extends BaseScreen {
 
     public void tapSignUp(){
         signUp.click();
+    }
+
+    public WebElement getLoginBtn() {
+        return loginBtn;
+    }
+
+    public WebElement getSuccessMsg() {
+        return successMsg;
     }
 }

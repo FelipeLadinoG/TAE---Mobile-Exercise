@@ -11,18 +11,18 @@ public class SignUpScreen extends BaseScreen {
     private static final String PASSWORD = "input-password";
     private static final String CONFIRM_PASSWORD = "input-repeat-password";
     private static final String SIGN_UP = "UiSelector().className(android.widget.TextView).text(\"SIGN UP\")";
+    private static final String SIGNED_UP = "UiSelector().className(android.widget.TextView).text(\"Signed Up!\")";
 
     @AndroidFindBy(accessibility = EMAIL)
     WebElement emailField;
-
     @AndroidFindBy(accessibility = PASSWORD)
     WebElement passwordField;
-
     @AndroidFindBy(accessibility = CONFIRM_PASSWORD)
     WebElement confirmField;
-
     @AndroidFindBy(uiAutomator = SIGN_UP)
     WebElement signUpBtn;
+    @AndroidFindBy(uiAutomator = SIGNED_UP)
+    WebElement signedUpMsg;
     public SignUpScreen(AndroidDriver driver) {
         super(driver);
     }
@@ -44,5 +44,9 @@ public class SignUpScreen extends BaseScreen {
 
     public void setSignUpBtn(WebElement signUpBtn) {
         this.signUpBtn = signUpBtn;
+    }
+
+    public WebElement getSignedUpMsg() {
+        return signedUpMsg;
     }
 }

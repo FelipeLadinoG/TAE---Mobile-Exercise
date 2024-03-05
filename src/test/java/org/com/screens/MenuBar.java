@@ -6,11 +6,14 @@ import org.com.utils.screens.BaseScreen;
 import org.openqa.selenium.WebElement;
 
 public class MenuBar extends BaseScreen {
+    private static final String HOME = "Home";
     private static final String WEB_VIEW = "Webview";
     private static final String LOGIN = "Login";
     private static final String FORMS = "Forms";
     private static final String SWIPE = "Swipe";
     private static final String DRAG = "Drag";
+    @AndroidFindBy(accessibility = HOME)
+    private WebElement homeOption;
     @AndroidFindBy(accessibility = WEB_VIEW)
     private WebElement webViewOption;
 
@@ -31,11 +34,16 @@ public class MenuBar extends BaseScreen {
         super(driver);
     }
 
+    public void tapHomeView (){
+        homeOption.click();
+    }
+
     public void tapWebView (){
         webViewOption.click();
     }
 
     public void tapLogin (){
+        waitUntil(loginOption);
         loginOption.click();
     }
 

@@ -2,21 +2,15 @@ package org.com.utils.tests;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
-import org.com.screens.HomeScreen;
-import org.com.screens.LogInScreen;
-import org.com.screens.MenuBar;
-import org.com.screens.SignUpScreen;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.com.screens.*;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.Properties;
+import java.util.Random;
 
 public class BaseTest {
     private static final String PROPERTIES_FILE = "src/test/resources/config.properties";
@@ -30,7 +24,7 @@ public class BaseTest {
         setUpCapabilities(capabilities);
         try {
             driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), capabilities);
-        }catch (MalformedURLException exception){
+        } catch (MalformedURLException exception) {
             System.out.println(exception.getMessage());
         }
     }
@@ -54,27 +48,59 @@ public class BaseTest {
 
     }
 
+    public static String generateRandomString(boolean generateEmail) {
+        String characters = "abcdefghijklmnopqrstuvwxyz0123456789"; // Caracteres permitidos
+        StringBuilder result = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) { // Longitud del nombre de usuario (puedes ajustarlo según tus necesidades)
+            char randomChar = characters.charAt(random.nextInt(characters.length()));
+            result.append(randomChar);
+        }
+        if (generateEmail)
+            result.append("@correo.com");
+        return result.toString();
+    }
+
 
     public static String getCapability(String variable) {
         return PROPERTIES.getProperty(variable);
     }
 
-    public MenuBar returnMenu(){
+    public void quitApp(){
+        driver.quit();
+    }
+
+    public MenuBar returnMenu() {
         return new MenuBar(driver);
     }
 
-    public HomeScreen returnHomeScreen(){
+    public HomeScreen returnHomeScreen() {
         return new HomeScreen(driver);
     }
 
-    public LogInScreen returnLoginScreen(){
+    public WebViewScreen returnWebViewScreen() {
+        return new WebViewScreen(driver);
+    }
+
+    public LogInScreen returnLoginScreen() {
         return new LogInScreen(driver);
     }
 
-    public SignUpScreen returnSignUpScreen(){
+    public SignUpScreen returnSignUpScreen() {
         return new SignUpScreen(driver);
     }
 
+    public FormsScreen returnFormsScreen() {
+        return new FormsScreen(driver);
+    }
+
+    public SwipeScreen returnSwipeScreen() {
+        return new SwipeScreen(driver);
+    }
+
+    public DragScreen returnDragScreen() {
+        return new DragScreen(driver);
+    }
 
 
 }
