@@ -3,13 +3,19 @@ package org.com.utils.tests;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.com.screens.HomeScreen;
+import org.com.screens.LogInScreen;
 import org.com.screens.MenuBar;
+import org.com.screens.SignUpScreen;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Properties;
 
 public class BaseTest {
@@ -60,6 +66,15 @@ public class BaseTest {
     public HomeScreen returnHomeScreen(){
         return new HomeScreen(driver);
     }
+
+    public LogInScreen returnLoginScreen(){
+        return new LogInScreen(driver);
+    }
+
+    public SignUpScreen returnSignUpScreen(){
+        return new SignUpScreen(driver);
+    }
+
 
 
 }
